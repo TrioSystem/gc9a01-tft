@@ -65,17 +65,14 @@ class Gc9a01Tft extends ColorTft:
     send  0x8E 0xFF // ?
     send  0x8F 0xFF // ?
     send  0xB6 0x00 0x00 // ?
-
-    send  COLOR-TFT-MADCTL_ COLOR-TFT-FLIP-X | COLOR-TFT-REVERSE-R-B
-    //send COLOR-TFT-MADCTL_ (flags & COLOR-TFT-MADCTL-MASK_)
+    
+    send COLOR-TFT-MADCTL_ (madctl_ & COLOR-TFT-MADCTL-MASK_)
 
 
     if sixteen-bit-mode_:
-      send COLOR-TFT-COLMOD_ COLOR-TFT-16-PIXEL-MODE_
-      print "16-bit-mode"
+      send COLOR-TFT-COLMOD_ COLOR-TFT-16-PIXEL-MODE_     
     else:
       send COLOR-TFT-COLMOD_ COLOR-TFT-18-PIXEL-MODE_
-      print "18-bit-mode"
 
     send-array  0x90 #[0x08, 0x08, 0x08, 0x08]  // ?
     send  0xBD 0x06 // ?
